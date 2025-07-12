@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, Send, MapPin, Phone, Terminal } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, easeOut } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const Contact = () => {
@@ -48,7 +48,7 @@ const Contact = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: easeOut
       }
     }
   };
@@ -215,10 +215,10 @@ const Contact = () => {
                     type="submit"
                     whileHover={{ scale: 1.02, boxShadow: "0 0 25px rgba(34, 197, 94, 0.5)" }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full px-6 py-3 bg-gradient-to-r from-green-500 to-green-400 text-black rounded font-semibold neon-border transition-all duration-300 flex items-center justify-center space-x-2 font-mono"
+                    className="w-full min-w-0 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-green-500 to-green-400 text-black rounded font-semibold neon-border transition-all duration-300 flex items-center justify-center space-x-2 font-mono text-base sm:text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2"
                   >
                     <Send size={20} />
-                    <span>./send_message.sh</span>
+                    <span className="truncate">./send_message.sh</span>
                   </motion.button>
                 </form>
               </div>
