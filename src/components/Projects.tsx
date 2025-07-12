@@ -14,7 +14,7 @@ const Projects = () => {
       title: "Web Scraper using Python & Docker",
       description: "A scalable web scraping solution built with Python, featuring CSV export capabilities, robust error handling, and containerized deployment with Docker.",
       icon: <Code className="text-green-400" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project.git",
+      github: "https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project",
       technologies: ["Python", "Docker", "BeautifulSoup", "Requests", "CSV"],
       features: [
         "Automated web data extraction",
@@ -33,7 +33,7 @@ const Projects = () => {
       title: "Custom Ansible Cluster in Docker + Kubernetes",
       description: "Manual setup of Ansible master and managed nodes using Red Hat-based Docker containers deployed in Kubernetes Pods with SSH configuration.",
       icon: <Container className="text-green-300" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup.git",
+      github: "https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup",
       technologies: ["Ansible", "Docker", "Kubernetes", "SSH", "Red Hat"],
       features: [
         "Custom Ansible cluster configuration",
@@ -52,7 +52,7 @@ const Projects = () => {
       title: "File Management using Python",
       description: "A command-line interface tool for organizing and managing local files efficiently with various sorting and categorization options.",
       icon: <FileText className="text-green-500" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733/File-Management.git",
+      github: "https://github.com/VaibhaviSugandhi1733/File-Management",
       technologies: ["Python", "CLI", "OS Module", "File System"],
       features: [
         "File organization automation",
@@ -190,8 +190,12 @@ const Projects = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => {
+                        console.log('Opening GitHub link:', project.github);
+                        window.open(project.github, '_blank', 'noopener,noreferrer');
+                      }}
                       whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(34, 197, 94, 0.5)" }}
-                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-xs sm:text-sm neon-border px-2 sm:px-3 py-1.5 sm:py-2 rounded"
+                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-xs sm:text-sm neon-border px-2 sm:px-3 py-1.5 sm:py-2 rounded cursor-pointer"
                     >
                       <Github size={14} className="sm:w-4 sm:h-4" />
                       <span>git clone</span>
