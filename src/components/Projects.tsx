@@ -1,6 +1,6 @@
 import React from 'react';
 import { Github, ExternalLink, Code, Container, Settings, FileText, Terminal } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, easeOut } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const Projects = () => {
@@ -14,7 +14,7 @@ const Projects = () => {
       title: "Web Scraper using Python & Docker",
       description: "A scalable web scraping solution built with Python, featuring CSV export capabilities, robust error handling, and containerized deployment with Docker.",
       icon: <Code className="text-green-400" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project.git",
+      github: "https://github.com/VaibhaviSugandhi1733/web-scraper-project.git",
       technologies: ["Python", "Docker", "BeautifulSoup", "Requests", "CSV"],
       features: [
         "Automated web data extraction",
@@ -33,7 +33,7 @@ const Projects = () => {
       title: "Custom Ansible Cluster in Docker + Kubernetes",
       description: "Manual setup of Ansible master and managed nodes using Red Hat-based Docker containers deployed in Kubernetes Pods with SSH configuration.",
       icon: <Container className="text-green-300" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup.git",
+      github: "https://github.com/VaibhaviSugandhi1733/ansible-cluster-setup.git",
       technologies: ["Ansible", "Docker", "Kubernetes", "SSH", "Red Hat"],
       features: [
         "Custom Ansible cluster configuration",
@@ -52,7 +52,7 @@ const Projects = () => {
       title: "File Management using Python",
       description: "A command-line interface tool for organizing and managing local files efficiently with various sorting and categorization options.",
       icon: <FileText className="text-green-500" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733/File-Management.git",
+      github: "https://github.com/VaibhaviSugandhi1733/file-management-tool.git",
       technologies: ["Python", "CLI", "OS Module", "File System"],
       features: [
         "File organization automation",
@@ -87,7 +87,7 @@ const Projects = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: easeOut
       }
     }
   };
