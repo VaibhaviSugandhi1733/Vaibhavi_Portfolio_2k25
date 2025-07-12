@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Github, ExternalLink, Code, Container, FileText, Terminal } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
@@ -7,6 +7,22 @@ const Projects = () => {
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const [loadingLinks, setLoadingLinks] = useState<{ [key: string]: boolean }>({});
+
+  const handleLinkClick = (url: string, projectTitle: string) => {
+    // Set loading state for this specific link
+    setLoadingLinks(prev => ({ ...prev, [projectTitle]: true }));
+    
+    // Add a small delay to show loading state, then open link
+    setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      // Reset loading state after a short delay
+      setTimeout(() => {
+        setLoadingLinks(prev => ({ ...prev, [projectTitle]: false }));
+      }, 1000);
+    }, 100);
+  };
 
   const projects = [
     {
@@ -160,25 +176,27 @@ const Projects = () => {
                         Repository: {project.github.split('/').pop()}
                       </div>
                       <div className="flex space-x-2">
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-all duration-300 font-mono text-xs sm:text-sm neon-border px-3 sm:px-4 py-2 sm:py-3 rounded cursor-pointer bg-black/20 hover:bg-black/40 hover:scale-105 active:scale-95"
+                        <button
+                          onClick={() => handleLinkClick(project.github, project.title)}
+                          disabled={loadingLinks[project.title]}
+                          className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-all duration-300 font-mono text-xs sm:text-sm neon-border px-3 sm:px-4 py-2 sm:py-3 rounded cursor-pointer bg-black/20 hover:bg-black/40 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                           title={`Click to open ${project.title} repository`}
                         >
                           <Github size={16} className="sm:w-5 sm:h-5" />
-                          <span className="font-semibold">git clone</span>
-                        </a>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-all duration-300 font-mono text-xs px-2 py-2 rounded cursor-pointer bg-green-900/20 hover:bg-green-900/40 border border-green-500/50 hover:scale-105 active:scale-95"
+                          <span className="font-semibold">
+                            {loadingLinks[project.title] ? 'Opening...' : 'git clone'}
+                          </span>
+                        </button>
+                        <button
+                          onClick={() => handleLinkClick(project.github, project.title)}
+                          disabled={loadingLinks[project.title]}
+                          className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-all duration-300 font-mono text-xs px-2 py-2 rounded cursor-pointer bg-green-900/20 hover:bg-green-900/40 border border-green-500/50 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                           title={`Backup: Click to open ${project.title} repository`}
                         >
-                          <span className="text-xs">🔗</span>
-                        </a>
+                          <span className="text-xs">
+                            {loadingLinks[project.title] ? '⏳' : '🔗'}
+                          </span>
+                        </button>
                       </div>
                     </div>
                   </div>

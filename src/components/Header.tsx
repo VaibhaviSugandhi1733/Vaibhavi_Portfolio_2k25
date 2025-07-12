@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [loadingLinks, setLoadingLinks] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +14,17 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLinkClick = (url: string, linkType: string) => {
+    setLoadingLinks(prev => ({ ...prev, [linkType]: true }));
+    
+    setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setTimeout(() => {
+        setLoadingLinks(prev => ({ ...prev, [linkType]: false }));
+      }, 1000);
+    }, 100);
+  };
 
   const navItems = [
     { name: 'About', href: '#about' },
@@ -61,27 +73,33 @@ const Header = () => {
 
           {/* Social Links */}
           <div className="hidden md:flex items-center space-x-4">
-            <motion.a
-              href="https://github.com/VaibhaviSugandhi1733"
+            <motion.button
+              onClick={() => handleLinkClick('https://github.com/VaibhaviSugandhi1733', 'header-github')}
+              disabled={loadingLinks['header-github']}
               whileHover={{ scale: 1.1 }}
-              className="text-green-300 hover:text-green-400 transition-colors duration-200 glow-effect p-2 rounded"
+              className="text-green-300 hover:text-green-400 transition-colors duration-200 glow-effect p-2 rounded disabled:opacity-50"
+              title={loadingLinks['header-github'] ? 'Opening GitHub...' : 'Visit GitHub Profile'}
             >
               <Github size={20} />
-            </motion.a>
-            <motion.a
-              href="https://linkedin.com/in/vaibhavi-sugandhi"
+            </motion.button>
+            <motion.button
+              onClick={() => handleLinkClick('https://linkedin.com/in/vaibhavi-sugandhi', 'header-linkedin')}
+              disabled={loadingLinks['header-linkedin']}
               whileHover={{ scale: 1.1 }}
-              className="text-green-300 hover:text-green-400 transition-colors duration-200 glow-effect p-2 rounded"
+              className="text-green-300 hover:text-green-400 transition-colors duration-200 glow-effect p-2 rounded disabled:opacity-50"
+              title={loadingLinks['header-linkedin'] ? 'Opening LinkedIn...' : 'Visit LinkedIn Profile'}
             >
               <Linkedin size={20} />
-            </motion.a>
-            <motion.a
-              href="mailto:vaibhavi.sugandhi@email.com"
+            </motion.button>
+            <motion.button
+              onClick={() => handleLinkClick('mailto:vaibhavi.sugandhi@email.com', 'header-email')}
+              disabled={loadingLinks['header-email']}
               whileHover={{ scale: 1.1 }}
-              className="text-green-300 hover:text-green-400 transition-colors duration-200 glow-effect p-2 rounded"
+              className="text-green-300 hover:text-green-400 transition-colors duration-200 glow-effect p-2 rounded disabled:opacity-50"
+              title={loadingLinks['header-email'] ? 'Opening email client...' : 'Send Email'}
             >
               <Mail size={20} />
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -119,24 +137,30 @@ const Header = () => {
                 </a>
               ))}
               <div className="flex space-x-4 pt-3 border-t border-green-500/30">
-                <a
-                  href="https://github.com/VaibhaviSugandhi1733"
-                  className="text-green-300 hover:text-green-400 transition-colors duration-200"
+                <button
+                  onClick={() => handleLinkClick('https://github.com/VaibhaviSugandhi1733', 'mobile-github')}
+                  disabled={loadingLinks['mobile-github']}
+                  className="text-green-300 hover:text-green-400 transition-colors duration-200 disabled:opacity-50"
+                  title={loadingLinks['mobile-github'] ? 'Opening GitHub...' : 'Visit GitHub Profile'}
                 >
                   <Github size={20} />
-                </a>
-                <a
-                  href="https://linkedin.com/in/vaibhavi-sugandhi"
-                  className="text-green-300 hover:text-green-400 transition-colors duration-200"
+                </button>
+                <button
+                  onClick={() => handleLinkClick('https://linkedin.com/in/vaibhavi-sugandhi', 'mobile-linkedin')}
+                  disabled={loadingLinks['mobile-linkedin']}
+                  className="text-green-300 hover:text-green-400 transition-colors duration-200 disabled:opacity-50"
+                  title={loadingLinks['mobile-linkedin'] ? 'Opening LinkedIn...' : 'Visit LinkedIn Profile'}
                 >
                   <Linkedin size={20} />
-                </a>
-                <a
-                  href="mailto:vaibhavi.sugandhi@email.com"
-                  className="text-green-300 hover:text-green-400 transition-colors duration-200"
+                </button>
+                <button
+                  onClick={() => handleLinkClick('mailto:vaibhavi.sugandhi@email.com', 'mobile-email')}
+                  disabled={loadingLinks['mobile-email']}
+                  className="text-green-300 hover:text-green-400 transition-colors duration-200 disabled:opacity-50"
+                  title={loadingLinks['mobile-email'] ? 'Opening email client...' : 'Send Email'}
                 >
                   <Mail size={20} />
-                </a>
+                </button>
               </div>
             </nav>
           </motion.div>

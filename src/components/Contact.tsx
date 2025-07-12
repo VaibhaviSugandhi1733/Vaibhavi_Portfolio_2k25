@@ -15,6 +15,8 @@ const Contact = () => {
     message: ''
   });
 
+  const [loadingLinks, setLoadingLinks] = useState<{ [key: string]: boolean }>({});
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
@@ -28,6 +30,17 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleLinkClick = (url: string, linkType: string) => {
+    setLoadingLinks(prev => ({ ...prev, [linkType]: true }));
+    
+    setTimeout(() => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setTimeout(() => {
+        setLoadingLinks(prev => ({ ...prev, [linkType]: false }));
+      }, 1000);
+    }, 100);
   };
 
   const containerVariants = {
@@ -106,51 +119,56 @@ const Contact = () => {
               </div>
 
               <div className="space-y-4">
-                <motion.a
-                  href="mailto:vaibhavi.sugandhi@email.com"
+                <motion.button
+                  onClick={() => handleLinkClick('mailto:vaibhavi.sugandhi@email.com', 'email')}
+                  disabled={loadingLinks['email']}
                   whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(34, 197, 94, 0.4)" }}
-                  className="flex items-center space-x-4 p-4 terminal-glass rounded neon-border transition-all duration-300"
+                  className="flex items-center space-x-4 p-4 terminal-glass rounded neon-border transition-all duration-300 w-full text-left disabled:opacity-50"
                 >
                   <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-400 rounded flex items-center justify-center">
                     <Mail className="text-black" size={20} />
                   </div>
                   <div>
                     <h4 className="font-semibold text-green-300 font-mono">$ mail</h4>
-                    <p className="text-green-200 font-mono text-sm">vaibhavi.sugandhi@email.com</p>
+                    <p className="text-green-200 font-mono text-sm">
+                      {loadingLinks['email'] ? 'Opening email client...' : 'vaibhavi.sugandhi@email.com'}
+                    </p>
                   </div>
-                </motion.a>
+                </motion.button>
 
-                <motion.a
-                  href="https://github.com/VaibhaviSugandhi1733"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button
+                  onClick={() => handleLinkClick('https://github.com/VaibhaviSugandhi1733', 'github')}
+                  disabled={loadingLinks['github']}
                   whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(34, 197, 94, 0.4)" }}
-                  className="flex items-center space-x-4 p-4 terminal-glass rounded neon-border transition-all duration-300"
+                  className="flex items-center space-x-4 p-4 terminal-glass rounded neon-border transition-all duration-300 w-full text-left disabled:opacity-50"
                 >
                   <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-400 rounded flex items-center justify-center">
                     <Github className="text-black" size={20} />
                   </div>
                   <div>
                     <h4 className="font-semibold text-green-300 font-mono">$ git remote</h4>
-                    <p className="text-green-200 font-mono text-sm">@VaibhaviSugandhi1733</p>
+                    <p className="text-green-200 font-mono text-sm">
+                      {loadingLinks['github'] ? 'Opening GitHub...' : '@VaibhaviSugandhi1733'}
+                    </p>
                   </div>
-                </motion.a>
+                </motion.button>
 
-                <motion.a
-                  href="https://linkedin.com/in/vaibhavi-sugandhi"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button
+                  onClick={() => handleLinkClick('https://linkedin.com/in/vaibhavi-sugandhi', 'linkedin')}
+                  disabled={loadingLinks['linkedin']}
                   whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(34, 197, 94, 0.4)" }}
-                  className="flex items-center space-x-4 p-4 terminal-glass rounded neon-border transition-all duration-300"
+                  className="flex items-center space-x-4 p-4 terminal-glass rounded neon-border transition-all duration-300 w-full text-left disabled:opacity-50"
                 >
                   <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-400 rounded flex items-center justify-center">
                     <Linkedin className="text-black" size={20} />
                   </div>
                   <div>
                     <h4 className="font-semibold text-green-300 font-mono">$ ssh linkedin</h4>
-                    <p className="text-green-200 font-mono text-sm">Vaibhavi Sugandhi</p>
+                    <p className="text-green-200 font-mono text-sm">
+                      {loadingLinks['linkedin'] ? 'Opening LinkedIn...' : 'Vaibhavi Sugandhi'}
+                    </p>
                   </div>
-                </motion.a>
+                </motion.button>
               </div>
             </motion.div>
 
