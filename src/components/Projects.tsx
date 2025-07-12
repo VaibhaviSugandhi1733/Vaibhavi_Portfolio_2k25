@@ -1,6 +1,5 @@
 import React from 'react';
 import { Github, ExternalLink, Code, Container, FileText, Terminal } from 'lucide-react';
-import { motion, easeOut } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const Projects = () => {
@@ -28,9 +27,25 @@ const Projects = () => {
 
   // Simple test function
   const simpleTest = (url: string, name: string) => {
-    alert(`Testing ${name} link: ${url}`);
-    console.log(`🧪 Testing ${name}: ${url}`);
-    window.open(url, '_blank');
+    try {
+      console.log(`🧪 Testing ${name}: ${url}`);
+      alert(`Testing ${name} link: ${url}`);
+      window.open(url, '_blank');
+    } catch (error) {
+      console.error(`❌ Error in simpleTest:`, error);
+      alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  };
+
+  // Super simple test
+  const basicTest = () => {
+    try {
+      console.log('🧪 Basic test button clicked!');
+      alert('React is working!');
+    } catch (error) {
+      console.error('❌ Error in basic test:', error);
+      alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   };
 
   const projects = [
@@ -93,29 +108,6 @@ const Projects = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: easeOut
-      }
-    }
-  };
-
   return (
     <section id="projects" className="py-20 terminal-bg">
       {/* SUPER SIMPLE TEST */}
@@ -123,7 +115,7 @@ const Projects = () => {
         <div className="terminal-window p-4">
           <h3 className="text-red-400 font-mono mb-4">🚨 BASIC TEST - Click this button:</h3>
           <button
-            onClick={() => alert('React is working!')}
+            onClick={basicTest}
             className="block w-full text-white bg-red-500 hover:bg-red-600 font-mono text-sm p-4 border border-red-500 rounded"
           >
             🧪 CLICK ME - Basic React Test
@@ -185,49 +177,10 @@ const Projects = () => {
           </div>
         </div>
       </div>
-
-      {/* Test Section - Remove after testing */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="terminal-window p-4">
-          <h3 className="text-green-300 font-mono mb-4">Test GitHub Links:</h3>
-          <div className="space-y-2">
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded hover:bg-green-900/20"
-            >
-              1. Web Scraper Project
-            </a>
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded hover:bg-green-900/20"
-            >
-              2. Ansible Cluster Setup
-            </a>
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/File-Management" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded hover:bg-green-900/20"
-            >
-              3. File Management Tool
-            </a>
-          </div>
-        </div>
-      </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="space-y-12"
-        >
-          <motion.div variants={itemVariants} className="text-center">
+        <div ref={ref} className="space-y-12">
+          <div className="text-center">
             <div className="terminal-window max-w-3xl mx-auto mb-8">
               <div className="terminal-header">
                 <div className="terminal-dot red"></div>
@@ -247,13 +200,12 @@ const Projects = () => {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {projects.map((project, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
                 className="project-card terminal-window h-full"
               >
                 <div className="terminal-header">
@@ -342,24 +294,23 @@ const Projects = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.div variants={itemVariants} className="text-center">
-            <motion.a
+          <div className="text-center">
+            <a
               href="https://github.com/VaibhaviSugandhi1733"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(34, 197, 94, 0.5)" }}
               className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-500 to-green-400 text-black rounded font-semibold neon-border transition-all duration-300 font-mono"
             >
               <Terminal size={20} />
               <span>cd ~/github && ls -la</span>
               <ExternalLink size={16} />
-            </motion.a>
-          </motion.div>
-        </motion.div>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
