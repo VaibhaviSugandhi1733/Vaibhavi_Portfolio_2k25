@@ -191,30 +191,28 @@ const Projects = () => {
                         Repository: {project.github.split('/').pop()}
                       </div>
                       <div className="flex space-x-2">
-                        {/* Simple, reliable button that always works */}
-                        <button
-                          onClick={() => {
-                            console.log(`Opening repository for "${project.title}": ${project.github}`);
-                            window.open(project.github, '_blank', 'noopener,noreferrer');
-                          }}
+                        {/* Simple anchor tag - most reliable */}
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-all duration-300 font-mono text-xs sm:text-sm neon-border px-3 sm:px-4 py-2 sm:py-3 rounded cursor-pointer bg-black/20 hover:bg-black/40 hover:scale-105 active:scale-95"
                           title={`Click to open ${project.title} repository`}
                         >
                           <Github size={16} className="sm:w-5 sm:h-5" />
                           <span className="font-semibold">git clone</span>
-                        </button>
+                        </a>
                         
-                        {/* Backup button - always works */}
-                        <button
-                          onClick={() => {
-                            console.log(`Backup: Opening repository for "${project.title}": ${project.github}`);
-                            window.open(project.github, '_blank', 'noopener,noreferrer');
-                          }}
+                        {/* Backup link - always works */}
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-all duration-300 font-mono text-xs px-2 py-2 rounded cursor-pointer bg-green-900/20 hover:bg-green-900/40 border border-green-500/50 hover:scale-105 active:scale-95"
                           title={`Backup: Click to open ${project.title} repository`}
                         >
                           <span className="text-xs">🔗</span>
-                        </button>
+                        </a>
                       </div>
                     </div>
                   </div>
