@@ -94,6 +94,39 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 terminal-bg">
+      {/* Simple Test Button */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="terminal-window p-4">
+          <h3 className="text-green-300 font-mono mb-4">Test GitHub Links:</h3>
+          <div className="space-y-2">
+            <a 
+              href="https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded"
+            >
+              1. Web Scraper Project
+            </a>
+            <a 
+              href="https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded"
+            >
+              2. Ansible Cluster Setup
+            </a>
+            <a 
+              href="https://github.com/VaibhaviSugandhi1733/File-Management" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded"
+            >
+              3. File Management Tool
+            </a>
+          </div>
+        </div>
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
