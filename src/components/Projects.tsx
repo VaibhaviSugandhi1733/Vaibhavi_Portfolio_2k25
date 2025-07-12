@@ -118,6 +118,19 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 terminal-bg">
+      {/* SUPER SIMPLE TEST */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="terminal-window p-4">
+          <h3 className="text-red-400 font-mono mb-4">🚨 BASIC TEST - Click this button:</h3>
+          <button
+            onClick={() => alert('React is working!')}
+            className="block w-full text-white bg-red-500 hover:bg-red-600 font-mono text-sm p-4 border border-red-500 rounded"
+          >
+            🧪 CLICK ME - Basic React Test
+          </button>
+        </div>
+      </div>
+
       {/* Debug Test Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <div className="terminal-window p-4">
