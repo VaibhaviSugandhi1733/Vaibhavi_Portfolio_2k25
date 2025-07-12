@@ -94,6 +94,24 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 terminal-bg">
+      {/* Test Links - Remove this after testing */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="terminal-window p-4">
+          <h3 className="text-green-300 font-mono mb-2">Test Links:</h3>
+          <div className="space-y-2">
+            {projects.map((project, index) => (
+              <button
+                key={index}
+                onClick={() => window.open(project.github, '_blank')}
+                className="block text-green-400 hover:text-green-300 font-mono text-sm"
+              >
+                {index + 1}. {project.title} - {project.github}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -186,20 +204,30 @@ const Projects = () => {
                   </div>
 
                   <div className="flex space-x-3 sm:space-x-4 pt-3 sm:pt-4 border-t border-green-500/30">
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <motion.button
                       onClick={() => {
                         console.log('Opening GitHub link:', project.github);
-                        window.open(project.github, '_blank', 'noopener,noreferrer');
+                        // Try multiple methods to ensure it works
+                        try {
+                          window.open(project.github, '_blank');
+                        } catch (error) {
+                          console.error('Error opening link:', error);
+                          // Fallback: create a temporary link and click it
+                          const link = document.createElement('a');
+                          link.href = project.github;
+                          link.target = '_blank';
+                          link.rel = 'noopener noreferrer';
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                        }
                       }}
                       whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(34, 197, 94, 0.5)" }}
-                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-xs sm:text-sm neon-border px-2 sm:px-3 py-1.5 sm:py-2 rounded cursor-pointer"
+                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-xs sm:text-sm neon-border px-2 sm:px-3 py-1.5 sm:py-2 rounded cursor-pointer bg-transparent border-none"
                     >
                       <Github size={14} className="sm:w-4 sm:h-4" />
                       <span>git clone</span>
-                    </motion.a>
+                    </motion.button>
                   </div>
                 </div>
               </motion.div>
