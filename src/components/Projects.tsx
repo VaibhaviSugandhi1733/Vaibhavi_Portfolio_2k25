@@ -8,46 +8,6 @@ const Projects = () => {
     threshold: 0.1
   });
 
-  // Test function to verify links work
-  const testLink = (url: string, projectName: string) => {
-    console.log(`Testing link for ${projectName}: ${url}`);
-    try {
-      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-      if (newWindow) {
-        console.log(`✅ Successfully opened ${projectName} in new tab`);
-      } else {
-        console.log(`❌ Failed to open ${projectName} - popup blocked?`);
-        // Fallback: try to navigate directly
-        window.location.href = url;
-      }
-    } catch (error) {
-      console.error(`❌ Error opening ${projectName}:`, error);
-    }
-  };
-
-  // Simple test function
-  const simpleTest = (url: string, name: string) => {
-    try {
-      console.log(`🧪 Testing ${name}: ${url}`);
-      alert(`Testing ${name} link: ${url}`);
-      window.open(url, '_blank');
-    } catch (error) {
-      console.error(`❌ Error in simpleTest:`, error);
-      alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  };
-
-  // Super simple test
-  const basicTest = () => {
-    try {
-      console.log('🧪 Basic test button clicked!');
-      alert('React is working!');
-    } catch (error) {
-      console.error('❌ Error in basic test:', error);
-      alert(`Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  };
-
   const projects = [
     {
       title: "Web Scraper using Python & Docker",
@@ -110,74 +70,6 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 terminal-bg">
-      {/* SUPER SIMPLE TEST */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="terminal-window p-4">
-          <h3 className="text-red-400 font-mono mb-4">🚨 BASIC TEST - Click this button:</h3>
-          <button
-            onClick={basicTest}
-            className="block w-full text-white bg-red-500 hover:bg-red-600 font-mono text-sm p-4 border border-red-500 rounded"
-          >
-            🧪 CLICK ME - Basic React Test
-          </button>
-        </div>
-      </div>
-
-      {/* Debug Test Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="terminal-window p-4">
-          <h3 className="text-red-400 font-mono mb-4">🔧 DEBUG: Test Links (Click these first):</h3>
-          <div className="space-y-2">
-            <button
-              onClick={() => simpleTest("https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project", "Web Scraper")}
-              className="block w-full text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded hover:bg-green-900/20 text-left"
-            >
-              🧪 TEST 1: Web Scraper Project (JS Button)
-            </button>
-            <button
-              onClick={() => simpleTest("https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup", "Ansible Cluster")}
-              className="block w-full text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded hover:bg-green-900/20 text-left"
-            >
-              🧪 TEST 2: Ansible Cluster Setup (JS Button)
-            </button>
-            <button
-              onClick={() => simpleTest("https://github.com/VaibhaviSugandhi1733/File-Management", "File Management")}
-              className="block w-full text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded hover:bg-green-900/20 text-left"
-            >
-              🧪 TEST 3: File Management Tool (JS Button)
-            </button>
-          </div>
-          
-          <h4 className="text-yellow-400 font-mono mt-4 mb-2">🔗 Simple HTML Links (Backup):</h4>
-          <div className="space-y-2">
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-blue-400 hover:text-blue-300 font-mono text-sm p-2 border border-blue-500 rounded hover:bg-blue-900/20"
-            >
-              🔗 HTML LINK 1: Web Scraper Project
-            </a>
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-blue-400 hover:text-blue-300 font-mono text-sm p-2 border border-blue-500 rounded hover:bg-blue-900/20"
-            >
-              🔗 HTML LINK 2: Ansible Cluster Setup
-            </a>
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/File-Management" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-blue-400 hover:text-blue-300 font-mono text-sm p-2 border border-blue-500 rounded hover:bg-blue-900/20"
-            >
-              🔗 HTML LINK 3: File Management Tool
-            </a>
-          </div>
-        </div>
-      </div>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className="space-y-12">
           <div className="text-center">
@@ -268,7 +160,6 @@ const Projects = () => {
                         Repository: {project.github.split('/').pop()}
                       </div>
                       <div className="flex space-x-2">
-                        {/* Simple anchor tag - most reliable */}
                         <a
                           href={project.github}
                           target="_blank"
@@ -279,8 +170,6 @@ const Projects = () => {
                           <Github size={16} className="sm:w-5 sm:h-5" />
                           <span className="font-semibold">git clone</span>
                         </a>
-                        
-                        {/* Backup link - always works */}
                         <a
                           href={project.github}
                           target="_blank"
