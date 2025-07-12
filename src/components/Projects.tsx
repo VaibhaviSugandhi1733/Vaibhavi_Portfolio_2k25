@@ -33,7 +33,7 @@ const Projects = () => {
       title: "Custom Ansible Cluster in Docker + Kubernetes",
       description: "Manual setup of Ansible master and managed nodes using Red Hat-based Docker containers deployed in Kubernetes Pods with SSH configuration.",
       icon: <Container className="text-green-300" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733?tab=repositories",
+      github: "https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup.git",
       technologies: ["Ansible", "Docker", "Kubernetes", "SSH", "Red Hat"],
       features: [
         "Custom Ansible cluster configuration",
@@ -52,7 +52,7 @@ const Projects = () => {
       title: "File Management using Python",
       description: "A command-line interface tool for organizing and managing local files efficiently with various sorting and categorization options.",
       icon: <FileText className="text-green-500" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733?tab=repositories",
+      github: "https://github.com/VaibhaviSugandhi1733/File-Management.git",
       technologies: ["Python", "CLI", "OS Module", "File System"],
       features: [
         "File organization automation",
@@ -124,12 +124,12 @@ const Projects = () => {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="project-card terminal-window"
+                className="project-card terminal-window h-full"
               >
                 <div className="terminal-header">
                   <div className="terminal-dot red"></div>
@@ -137,64 +137,64 @@ const Projects = () => {
                   <div className="terminal-dot green"></div>
                   <span className="text-green-400 text-sm font-mono">project_{index + 1}.md</span>
                 </div>
-                <div className="p-6 space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="p-3 rounded bg-black/50 neon-border">
+                <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <div className="p-2 sm:p-3 rounded bg-black/50 neon-border flex-shrink-0">
                       {project.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-green-300 font-mono">
+                    <h3 className="text-base sm:text-lg font-bold text-green-300 font-mono leading-tight">
                       {project.title}
                     </h3>
                   </div>
 
-                  <p className="text-green-200 leading-relaxed font-mono text-sm">
+                  <p className="text-green-200 leading-relaxed font-mono text-xs sm:text-sm">
                     {project.description}
                   </p>
 
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-green-300 font-mono"># Features:</h4>
+                  <div className="space-y-2 sm:space-y-3">
+                    <h4 className="font-semibold text-green-300 font-mono text-sm"># Features:</h4>
                     <ul className="space-y-1">
                       {project.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-sm text-green-200 flex items-center font-mono">
-                          <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2"></span>
-                          {feature}
+                        <li key={featureIndex} className="text-xs sm:text-sm text-green-200 flex items-start font-mono">
+                          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-green-400 rounded-full mr-2 mt-1.5 sm:mt-1 flex-shrink-0"></span>
+                          <span className="leading-relaxed">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-green-300 font-mono"># Usage:</h4>
-                    <div className="bg-black/50 p-3 rounded text-xs font-mono space-y-1">
+                  <div className="space-y-2 sm:space-y-3">
+                    <h4 className="font-semibold text-green-300 font-mono text-sm"># Usage:</h4>
+                    <div className="bg-black/50 p-2 sm:p-3 rounded text-xs font-mono space-y-1">
                       {project.commands.map((command, cmdIndex) => (
-                        <div key={cmdIndex} className="text-green-400">
+                        <div key={cmdIndex} className="text-green-400 break-all">
                           $ {command}
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="tech-badge px-3 py-1 text-green-300 text-xs font-medium rounded font-mono"
+                        className="tech-badge px-2 sm:px-3 py-1 text-green-300 text-xs font-medium rounded font-mono"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex space-x-4 pt-4 border-t border-green-500/30">
+                  <div className="flex space-x-3 sm:space-x-4 pt-3 sm:pt-4 border-t border-green-500/30">
                     <motion.a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(34, 197, 94, 0.5)" }}
-                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-sm neon-border px-3 py-2 rounded"
+                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-xs sm:text-sm neon-border px-2 sm:px-3 py-1.5 sm:py-2 rounded"
                     >
-                      <Github size={16} />
-                      <span>{project.github.includes('.git') ? 'git clone' : 'View Projects'}</span>
+                      <Github size={14} className="sm:w-4 sm:h-4" />
+                      <span>git clone</span>
                     </motion.a>
                   </div>
                 </div>
