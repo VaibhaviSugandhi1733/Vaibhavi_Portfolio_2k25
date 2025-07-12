@@ -94,39 +94,6 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 terminal-bg">
-      {/* Simple Test Button */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="terminal-window p-4">
-          <h3 className="text-green-300 font-mono mb-4">Test GitHub Links:</h3>
-          <div className="space-y-2">
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded"
-            >
-              1. Web Scraper Project
-            </a>
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/AnsibleClusterSetup" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded"
-            >
-              2. Ansible Cluster Setup
-            </a>
-            <a 
-              href="https://github.com/VaibhaviSugandhi1733/File-Management" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block text-green-400 hover:text-green-300 font-mono text-sm p-2 border border-green-500 rounded"
-            >
-              3. File Management Tool
-            </a>
-          </div>
-        </div>
-      </div>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -219,15 +186,26 @@ const Projects = () => {
                   </div>
 
                   <div className="flex space-x-3 sm:space-x-4 pt-3 sm:pt-4 border-t border-green-500/30">
-                    <a
+                    <motion.a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-xs sm:text-sm neon-border px-2 sm:px-3 py-1.5 sm:py-2 rounded cursor-pointer"
+                      whileHover={{ 
+                        scale: 1.05, 
+                        boxShadow: "0 0 20px rgba(34, 197, 94, 0.6)",
+                        y: -2
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 400, 
+                        damping: 17 
+                      }}
+                      className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-all duration-300 font-mono text-xs sm:text-sm neon-border px-3 sm:px-4 py-2 sm:py-3 rounded cursor-pointer bg-black/20 hover:bg-black/40 transform hover:scale-105 active:scale-95"
                     >
-                      <Github size={14} className="sm:w-4 sm:h-4" />
-                      <span>git clone</span>
-                    </a>
+                      <Github size={16} className="sm:w-5 sm:h-5 transition-transform duration-300 group-hover:rotate-12" />
+                      <span className="font-semibold">git clone</span>
+                    </motion.a>
                   </div>
                 </div>
               </motion.div>
