@@ -14,7 +14,7 @@ const Projects = () => {
       title: "Web Scraper using Python & Docker",
       description: "A scalable web scraping solution built with Python, featuring CSV export capabilities, robust error handling, and containerized deployment with Docker.",
       icon: <Code className="text-green-400" size={32} />,
-      github: "https://github.com/VaibhaviSugandhi1733?tab=repositories",
+      github: "https://github.com/VaibhaviSugandhi1733/Web-Scrapper-project.git",
       technologies: ["Python", "Docker", "BeautifulSoup", "Requests", "CSV"],
       features: [
         "Automated web data extraction",
@@ -194,7 +194,7 @@ const Projects = () => {
                       className="flex items-center space-x-2 text-green-300 hover:text-green-400 transition-colors duration-200 font-mono text-sm neon-border px-3 py-2 rounded"
                     >
                       <Github size={16} />
-                      <span>View Projects</span>
+                      <span>{project.github.includes('.git') ? 'git clone' : 'View Projects'}</span>
                     </motion.a>
                   </div>
                 </div>
